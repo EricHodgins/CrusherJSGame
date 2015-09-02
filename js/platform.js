@@ -19,7 +19,8 @@ runner.Platform = (function() {
 		// draw a shape to represent the platform
 		var shape = new runner.CommonShapes.rectangle({
 			width: this.width,
-			height: this.height
+			height: this.height,
+			fillColor: "#C55454"
 		});
 		this.addChild(shape);
 	}

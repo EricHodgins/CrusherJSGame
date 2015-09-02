@@ -50,15 +50,40 @@ runner.Game = function() {
 		});
 
 		this.stage.on('stagemousedown', function() {
-			console.log("moving right");
-			hero.moveRight();
+
 		});
 
 		this.stage.on('stagemouseup', function() {
-			if (hero.onGround) {
-				hero.velocity.x = 0;
-			}
+
 		});
+
+		document.onkeydown = this.keyDown.bind(this);
+		document.onkeyup = this.keyUp.bind(this);
+	}
+
+
+	p.keyUp = function(key) {
+		if (this.hero.onGround) {
+			this.hero.velocity.x = 0;
+		}
+
+		// stop player from moving after jumping or falling to a new platform when there's nothing being pressed.
+		this.hero.playerInput = false;
+	}
+
+	p.keyDown = function(key) {
+		this.hero.playerInput = true;
+		switch (key.keyCode) {
+			case KEYCODES["KEY_UP"]:
+				this.hero.jump();
+				break;
+			case KEYCODES["KEY_RIGHT"]:
+				this.hero.moveRight();
+				break;
+			case KEYCODES["KEY_LEFT"]:
+				this.hero.moveLeft();
+				break;
+		}
 	}
 
 
@@ -67,6 +92,10 @@ runner.Game = function() {
 		if (this.hero.velocity.y > 0) {
 			this.hero.y += distanceY;
 			this.hero.velocity.y = 0;
+		}
+
+		if (!this.hero.playerInput) {
+			this.hero.velocity.x = 0;
 		}
 
 		this.hero.onGround = true;

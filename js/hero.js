@@ -14,7 +14,7 @@ runner.Hero = function() {
 		this.width = 10;
 		this.height = 15;
 
-		this.jumping = false;
+		this.playerInput = false;
 
 		// registration points (anchors)
 		this.regY = this.height;
@@ -29,7 +29,7 @@ runner.Hero = function() {
 		var shape = runner.CommonShapes.rectangle({
 			width: this.width,
 			height: this.height,
-			fillColor: "#4B4B84"
+			fillColor: "green"
 		});
 
 		this.addChild(shape);
@@ -46,6 +46,10 @@ runner.Hero = function() {
 
 	p.moveRight = function() {
 		this.velocity.x = 2;
+	}
+
+	p.moveLeft = function() {
+		this.velocity.x = -2;
 	}
 
 	p.MovableGameObject_tick = p.tick;
