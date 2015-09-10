@@ -10,7 +10,5 @@ var KEYCODES = {
 
 window.onload = function() {
 	// entry point
-	console.log("entry point: " + this);
 	runner.game = new runner.Game();
-	//this.document.onkeydown = runner.game.keyPressed;
 }

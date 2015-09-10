@@ -11,7 +11,7 @@ runner.Platform = (function() {
 	p.GameObject_initialize = p.initialize;
 	p.initialize = function(width) {
 		this.GameObject_initialize();
-		this.width = width || 120;
+		this.width = width || 90;
 		this.height = 12;
 
 		this.category = "platform";

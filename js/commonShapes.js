@@ -23,5 +23,19 @@ runner.CommonShapes = (function() {
 		return shape;
 	}
 
+	CommonShapes.triangle = function(triangle) {
+		triangle.pt1 = triangle.pt1 || 0;
+		triangle.pt2 = triangle.pt2 || 0;
+		triangle.pt3 = triangle.pt3 || 0;
+
+		var shape = new createjs.Shape();
+		shape.graphics.beginStroke(triangle.fillColor);
+		shape.graphics.beginFill(triangle.fillColor);
+		shape.graphics.moveTo(triangle.pt1.x, triangle.pt1.y).lineTo(triangle.pt2.x, triangle.pt2.y).lineTo(triangle.pt3.x, triangle.pt3.y);
+		//shape.graphics.moveTo(0, 0).lineTo(100, 0).lineTo(50, 100);
+		shape.graphics.closePath();
+		return shape
+	}
+
 	return CommonShapes;
 })();

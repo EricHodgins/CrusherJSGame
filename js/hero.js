@@ -23,6 +23,9 @@ runner.Hero = function() {
 		// collision points
 		this.collisionPoints = [
 			new createjs.Point(this.width/2, this.height),
+			new createjs.Point(this.width/2, 0),
+			new createjs.Point(this.width, this.height/2),
+			new createjs.Point(0, this.height/2)
 		];
 
 

@@ -1,7 +1,7 @@
 var runner = runner || {};
 runner.MovableGameObject = function() {
 	function MovableGameObject() {
-
+		this.initialize();
 	}
 
 	var p = MovableGameObject.prototype = new runner.GameObject();
