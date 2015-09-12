@@ -2,7 +2,7 @@ var runner = runner || {}
 
 runner.Platform = (function() {
 	function Platform(width) {
-		this.initialize();
+		this.initialize(width);
 	}
 
 	var p = Platform.prototype = new runner.GameObject();
@@ -11,6 +11,7 @@ runner.Platform = (function() {
 	p.GameObject_initialize = p.initialize;
 	p.initialize = function(width) {
 		this.GameObject_initialize();
+		console.log(width);
 		this.width = width || 90;
 		this.height = 12;
 
