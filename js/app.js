@@ -201,7 +201,7 @@ var runner = runner || {}
 
 runner.Platform = (function() {
 	function Platform(width) {
-		this.initialize();
+		this.initialize(width);
 	}
 
 	var p = Platform.prototype = new runner.GameObject();
@@ -210,6 +210,7 @@ runner.Platform = (function() {
 	p.GameObject_initialize = p.initialize;
 	p.initialize = function(width) {
 		this.GameObject_initialize();
+		console.log(width);
 		this.width = width || 90;
 		this.height = 12;
 
@@ -336,19 +337,21 @@ runner.Game = function() {
 		var cameraSpeed = this.cameraSpeed = 0.5;
 
 		var lastPlatformX = 10;
-		var lastPlatformY = this.canvas.height;
+		var lastPlatformY = this.canvas.height - 50;
 		var platformCountX = this.canvas.width / 120; // how many platformw will span the canvas
 		var platformCountY = 20; // how many layers of platforms will come up.
 
+		// init player hero
 		var hero = this.hero = new runner.Hero();
-		hero.x = 100;
-		hero.y = 100;
+		hero.x = 10;
+		hero.y = 80;
 		this.camera.addChild(hero);
 
 		// Draw Platforms
 		for (var j=0; j < platformCountY; j++) {
 			for (var i=0; i < platformCountX; i++) {
-				var platform = new runner.Platform();
+				var randomWidth = Math.max(Math.random() * 120, 20);
+				var platform = new runner.Platform(randomWidth);
 				platform.x = lastPlatformX;
 				platform.y = lastPlatformY;
 
@@ -547,6 +550,15 @@ runner.Game = function() {
 
 		// if hero falls down and off screen
 		if (this.hero.y > (this.canvas.height + -this.camera.y)) this.gameOver();
+
+		// if hero goes off the edges will spawn on the oppoosite side
+		if (this.hero.x < 0) {
+			console.log("Canvase: " + this.canvas.width + " Hero: " + this.hero.x);
+			this.hero.x = this.canvas.width;
+		}
+		if (this.hero.x > this.canvas.width) {
+			this.hero.x = 0;
+		}
 
 	}
 
